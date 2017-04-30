@@ -10,11 +10,13 @@ using namespace cv;
 using namespace std;
 class Calculate {
 	private:
-		double x = 100, y = 100, p = 45,xi,yi,pi,xj,yj,pj;//机器的全局坐标x,y；
+		double x = 100, y = 100, p = 45,xi,yi,pi,xj,yj,pj;//机器的全局坐标x,y；xi=x(k) xj=x(k+1);
 		double zi_p = 3, zi_dis = 15;//传进来的角度和距离
-		double zi_x, zi_y;//特征点的局部坐标
-		double gi_x, gi_y;//特征点的全局坐标
+		//double zi_x, zi_y;//特征点的局部坐标
+		double g_x, g_y,g_p;//特征点的全局坐标
 
+		double zi_x[5], zi_y[5];
+		double gi_x[5], gi_y[5];
 		double Distance_min = 100, Distance_max = 150; //最大距离里，最小距离
 		double nearest_x = 110, nearest_y = 120;//每一条曲线c与g的最近距离
 		double Nearest_x = 110, Nearest_y = 120;//最近点的坐标，全局坐标
@@ -25,9 +27,17 @@ class Calculate {
 		double step_max, step_min;
 		int MaxIterater,n=2;
 	public:
-		void Calculate_Globle_Point();
-		double Calculate_Fg();
-		double Calculate_Vg();
+		double Calculate_Globle_Point(double a,double b,double c);
+		double Calculate_Globle_Point_y(double a, double b, double c);
+		double Calculate_Fg(double a,double b,double c);
+		double Calculate_Vg(double a,double b,double c);
 		void Calculate_TiDu();
-	    void Calculate_d_x_y_p();
+	    void Calculate_d_x_y_p(double a,double b,double c);
+		double getdx();
+		double getdy();
+		double getdp();
+		double getxi();
+		double getyi();
+		double getpi();
+
 };
